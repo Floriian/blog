@@ -24,9 +24,11 @@ services:
     ports:
       - 3001:3001
     volumes:
-      - ./backend:/app
-    environment:
-      - MONGODB_URI="mongodb://blog_user:blog_password@database:27017/blogdatabase?authMechanism=DEFAULT&authSource=admin"
+      - ./backend:/backend
+    # environment:
+    #   - MONGODB_URI="mongodb://blog_user:blog_password@blogdatabase:27017/blogdatabase?authMechanism=DEFAULT&authSource=admin"
+    env_file:
+      - ./backend/.env.local
     networks:
       - blog-network
   
@@ -38,7 +40,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./frontend:/app
+      - ./frontend:/frontend
     networks:
       - blog-network
 
