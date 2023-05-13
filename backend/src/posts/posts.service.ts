@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Post } from './model/post.model';
-import mongoose, { Model, ObjectId } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { CreatePostDto } from './dto/CreatePost.dto';
 import { UpdatePostDto } from './dto/UpdatePost.dto';
 import { Success } from '../types/success';
@@ -18,10 +18,19 @@ export class PostsService {
     return await this.postModel.find();
   }
 
-  async findPost(id: string | ObjectId): Promise<Post> {
-    const post = await this.postModel.findById(id);
-    if (!post) throw new NotFoundException("This post doesn't exists.");
-    return post;
+  async findPost(id: string): Promise<Post> {
+    try {
+      const post = await this.postModel.findById(id);
+      if (!post) throw new NotFoundException("This post doesn't exists.");
+      return post;
+    } catch (e) {
+      if (e instanceof mongoose.Error) {
+        if (e.name === 'CastError') {
+          throw new BadRequestException('Invalid ID.');
+        }
+      }
+      throw e;
+    }
   }
 
   async createPost(dto: CreatePostDto): Promise<Post> {
