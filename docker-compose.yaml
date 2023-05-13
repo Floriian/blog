@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  database:
+    image: mongo
+    container_name: blogdatabase
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=blogdatabase
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongoinit.js:ro
+      - ./mongo:/data/db
+    networks:
+      - blog-network
+
+  backend:
+    container_name: blog_backend
+    build: ./backend
+    depends_on:
+      - database
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/app
+    environment:
+      - MONGODB_URI="mongodb://blog_user:blog_password@database:27017/blogdatabase?authMechanism=DEFAULT&authSource=admin"
+    networks:
+      - blog-network
+  
+  frontend:
+    container_name: blog_frontend
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+    networks:
+      - blog-network
+
+networks:
+  blog-network:
+    driver: bridge
