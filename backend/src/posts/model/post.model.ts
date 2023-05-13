@@ -23,6 +23,11 @@ export class Post {
     default: Date.now(),
   })
   createdAt: Date;
+
+  @Prop({
+    required: false,
+  })
+  updatedAt: Date;
 }
 
 export type PostDocument = HydratedDocument<Post>;
