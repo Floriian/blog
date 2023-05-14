@@ -35,7 +35,7 @@ export class CommentsService {
     } catch (e) {
       if (e instanceof mongoose.Error) {
         if (e.name === 'CastError') {
-          throw new NotFoundException("This post doesn't exists.");
+          throw new NotFoundException("This comment doesn't exists.");
         }
       }
       return { success: false };
