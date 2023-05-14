@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/CreateComment.dto';
 
@@ -14,5 +14,15 @@ export class CommentsController {
   @Post(':id')
   createComment(@Param('id') id: string, @Body() dto: CreateCommentDto) {
     return this.commentsService.createComment(id, dto);
+  }
+
+  @Delete(':id')
+  deleteComment(@Param('id') id: string) {
+    return this.commentsService.deleteComment(id);
+  }
+
+  @Delete('/all/:id')
+  deleteAllComment(@Param('id') id: string) {
+    return this.commentsService.deleteAll(id);
   }
 }
