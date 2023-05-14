@@ -29,12 +29,6 @@ export class Post {
     required: false,
   })
   updatedAt: Date;
-
-  @Prop({
-    type: mongoose.Schema.Types.ObjectId,
-    ref: Post.name,
-  })
-  comments: Comment[];
 }
 
 export type PostDocument = HydratedDocument<Post>;

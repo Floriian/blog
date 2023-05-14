@@ -9,21 +9,21 @@ import { Post } from '../posts/model/post.model';
 export class CommentsService {
   constructor(
     @InjectModel(Comment.name) private commentModel: Model<Comment>,
-    @InjectModel(Post.name) private postModel: Model<Post>,
   ) {}
 
   async getPostComments(id: string): Promise<Comment[]> {
-    return await this.commentModel.findById(id);
+    return await this.commentModel.find({
+      post: id,
+    });
   }
 
   async createComment(id: string, dto: CreateCommentDto): Promise<Comment> {
-    const comment = new Comment();
-    comment.content = dto.content;
-    (await this.commentModel.create(comment)).save();
+    const comment = await this.commentModel.create({
+      post: id,
+      content: dto.content,
+    });
 
-    const post = await this.postModel.findById(id);
-    post.comments.push(comment);
-    await post.save();
+    await comment.save();
 
     return comment;
   }
