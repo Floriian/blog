@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Comment } from './model/comment.model';
 import { Model } from 'mongoose';
 import { CreateCommentDto } from './dto/CreateComment.dto';
-import { Post } from '../posts/model/post.model';
 
 @Injectable()
 export class CommentsService {
