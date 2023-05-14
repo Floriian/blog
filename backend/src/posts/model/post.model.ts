@@ -32,8 +32,7 @@ export class Post {
 
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
-    ref: Comment.name,
-    default: null,
+    ref: Post.name,
   })
   comments: Comment[];
 }

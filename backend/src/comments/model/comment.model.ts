@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-
 @Schema()
 export class Comment {
   @Prop({ required: true })
@@ -12,5 +11,5 @@ export class Comment {
   likes: number;
 }
 
-export type CommentdDocument = HydratedDocument<Comment>;
+export type CommentDocument = HydratedDocument<Comment>;
 export const CommentSchema = SchemaFactory.createForClass(Comment);
