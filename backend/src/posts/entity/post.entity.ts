@@ -12,4 +12,7 @@ export class PostEntity implements Post {
   createdAt: Date;
   @ApiProperty()
   updatedAt: Date;
+
+  @ApiProperty()
+  comments: number;
 }

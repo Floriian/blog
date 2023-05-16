@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
-import { Comment } from '../../comments/model/comment.model';
+import { HydratedDocument } from 'mongoose';
 
 @Schema()
 export class Post {
@@ -29,6 +28,12 @@ export class Post {
     required: false,
   })
   updatedAt: Date;
+
+  @Prop({
+    default: 0,
+    required: false,
+  })
+  comments: number;
 }
 
 export type PostDocument = HydratedDocument<Post>;

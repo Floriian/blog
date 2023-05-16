@@ -9,6 +9,7 @@ export default function BlogPreview({ post }: Props) {
       <h1 className="font-bold text-2xl">{post.title}</h1>
       {post.content}
       {post.likes}
+      Comments {post.comments}
     </div>
   );
 }

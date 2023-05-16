@@ -5,4 +5,5 @@ export type Post = {
   createdAt: Date;
   updatedAt: Date;
   likes: number;
+  comments: number;
 };
