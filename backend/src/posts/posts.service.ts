@@ -15,7 +15,11 @@ export class PostsService {
   constructor(@InjectModel(Post.name) private postModel: Model<Post>) {}
 
   async findPosts(): Promise<Post[]> {
-    return await this.postModel.find();
+    return await this.postModel.find({}, null, {
+      sort: {
+        createdAt: -1,
+      },
+    });
   }
 
   async findPost(id: string): Promise<Post> {
