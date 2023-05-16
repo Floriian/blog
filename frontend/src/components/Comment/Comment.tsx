@@ -10,7 +10,7 @@ export default function Comment({ comment }: Props) {
     <div className="border-2 border-gray-500 p-1 rounded-md">
       {comment.content}
       <div className="flex justify-end items-center">
-        {comment.likes < 0 ? <IconLike /> : <IconDislike />}
+        {comment.likes >= 0 ? <IconLike /> : <IconDislike />}
         {comment.likes}
       </div>
     </div>
