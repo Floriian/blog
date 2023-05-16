@@ -12,7 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-950 text-white">
-        <main>{children}</main>
+        <main className="grid place-items-center">{children}</main>
       </body>
     </html>
   );
