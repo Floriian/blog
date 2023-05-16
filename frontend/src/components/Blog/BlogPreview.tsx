@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Post } from "../../types/post";
 import IconComment from "../Icons/IconComment";
 import IconLike from "../Icons/IconLike";
@@ -18,13 +19,19 @@ export default function BlogPreview({ post }: Props) {
           ? post.content.slice(0, 100) + "..."
           : post.content}
       </p>
+      <Link
+        href={`/post/${post._id}`}
+        className="hover:text-blue-500 transition-colors duration-150 text-lg"
+      >
+        Go to post
+      </Link>
       <div className="flex justify-end gap-2 text-lg">
-        <div className="flex items-center cursor-pointer">
-          <IconComment className="hover:text-blue-600 transition-colors duration-150" />
+        <div className="flex items-center">
+          <IconComment />
           {post.comments}
         </div>
-        <div className="flex items-center cursor-pointer">
-          <IconLike className="hover:text-blue-600 transition-colors duration-150" />
+        <div className="flex items-center">
+          <IconLike />
           {post.likes}
         </div>
       </div>
