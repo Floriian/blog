@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Post } from "../../types/post";
 import IconComment from "../Icons/IconComment";
 import IconLike from "../Icons/IconLike";
+import IconDislike from "../Icons/IconDislike";
 
 type Props = {
   post: Post;
@@ -26,12 +27,16 @@ export default function BlogPreview({ post }: Props) {
         Go to post
       </Link>
       <div className="flex justify-end gap-2 text-lg">
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <IconComment />
           {post.comments}
         </div>
-        <div className="flex items-center">
-          <IconLike />
+        <div className="flex items-center gap-2">
+          {post.likes >= 0 ? (
+            <IconLike className="cursor-pointer hover:text-blue-500 transition-colors duration-150" />
+          ) : (
+            <IconDislike className="cursor-pointer hover:text-blue-500 transition-colors duration-150" />
+          )}
           {post.likes}
         </div>
       </div>
