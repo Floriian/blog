@@ -1,7 +1,7 @@
-import { Comment as TComment } from "../../../types/comment";
 import Comment from "../../../components/Comment/Comment";
+import { CommentEntity } from "../../../types/comment.entity";
+import { PostEntity } from "../../../types/post.entity";
 import serverFetch from "../../../utils/serverFetch";
-import { PostEntity } from "../../../types/post";
 export async function generateStaticParams() {
   const posts = await serverFetch<PostEntity[]>("/posts");
   return posts.map((post) => ({
@@ -15,7 +15,7 @@ async function getPost(id: string) {
 }
 
 async function getComments(postId: string) {
-  const comment = await serverFetch<TComment[]>(`/comments/${postId}`);
+  const comment = await serverFetch<CommentEntity[]>(`/comments/${postId}`);
   return comment;
 }
 
@@ -28,7 +28,7 @@ export default async function BlogId({ params }: { params: { slug: string } }) {
       <p>{post.content}</p>
       <hr />
       <h2 className="text-center">Comments</h2>
-      {comments.map((comment: TComment) => (
+      {comments.map((comment) => (
         <Comment comment={comment} key={comment._id} />
       ))}
     </div>
