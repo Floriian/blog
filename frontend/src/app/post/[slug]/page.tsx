@@ -1,4 +1,5 @@
 import Comment from "../../../components/Comment/Comment";
+import Markdown from "../../../components/Markdown/Markdown";
 import { CommentEntity } from "../../../types/comment.entity";
 import { PostEntity } from "../../../types/post.entity";
 import serverFetch from "../../../utils/serverFetch";
@@ -25,7 +26,7 @@ export default async function BlogId({ params }: { params: { slug: string } }) {
   return (
     <div className="max-w-4xl min-w-4xl flex flex-col gap-4">
       <h1 className="text-2xl text-center">{post.title}</h1>
-      <p>{post.content}</p>
+      <Markdown markdown={post.content} />
       <hr />
       <h2 className="text-center">Comments</h2>
       {comments.map((comment) => (
