@@ -1,16 +1,16 @@
 import { Comment as TComment } from "../../../types/comment";
 import Comment from "../../../components/Comment/Comment";
-import { Post } from "../../../types/post";
 import serverFetch from "../../../utils/serverFetch";
+import { PostEntity } from "../../../types/post";
 export async function generateStaticParams() {
-  const posts = await serverFetch<Post[]>("/posts");
+  const posts = await serverFetch<PostEntity[]>("/posts");
   return posts.map((post) => ({
     slug: post._id,
   }));
 }
 
 async function getPost(id: string) {
-  const post = await serverFetch<Post>(`/posts/${id}`);
+  const post = await serverFetch<PostEntity>(`/posts/${id}`);
   return post;
 }
 

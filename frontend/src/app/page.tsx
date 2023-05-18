@@ -1,9 +1,9 @@
 import BlogPreview from "../components/Blog/BlogPreview";
-import { Post } from "../types/post";
+import { PostEntity } from "../types/post.entity";
 import serverFetch from "../utils/serverFetch";
 
 async function getPosts() {
-  const res = await serverFetch<Post[]>("/posts", {
+  const res = await serverFetch<PostEntity[]>("/posts", {
     next: {
       revalidate: 10,
     },
@@ -13,7 +13,7 @@ async function getPosts() {
 }
 
 export default async function Home() {
-  const posts: Post[] = await getPosts();
+  const posts = await getPosts();
   return (
     <>
       {posts.map((post) => (

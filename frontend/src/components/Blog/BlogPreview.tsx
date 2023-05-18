@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Post } from "../../types/post";
 import IconComment from "../Icons/IconComment";
 import IconLike from "../Icons/IconLike";
 import IconDislike from "../Icons/IconDislike";
+import { PostEntity } from "../../types/post";
 
 type Props = {
-  post: Post;
+  post: PostEntity;
 };
 export default function BlogPreview({ post }: Props) {
   return (

@@ -1,9 +1,9 @@
-import { Comment } from "../../types/comment";
+import { CommentEntity } from "../../types/comment.entity";
 import IconDislike from "../Icons/IconDislike";
 import IconLike from "../Icons/IconLike";
 
 type Props = {
-  comment: Comment;
+  comment: CommentEntity;
 };
 export default function Comment({ comment }: Props) {
   return (
