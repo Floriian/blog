@@ -2,7 +2,7 @@ import Link from "next/link";
 import IconComment from "../Icons/IconComment";
 import IconLike from "../Icons/IconLike";
 import IconDislike from "../Icons/IconDislike";
-import { PostEntity } from "../../types/post";
+import { PostEntity } from "../../types/post.entity";
 
 type Props = {
   post: PostEntity;
