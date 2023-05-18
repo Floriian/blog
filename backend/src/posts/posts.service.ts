@@ -42,6 +42,22 @@ export class PostsService {
     return post.save();
   }
 
+  async incrementLike(id: string): Promise<Post> {
+    await this.findPost(id);
+    const post = await this.postModel.findById(id);
+    post.likes += 1;
+    await post.save();
+    return post;
+  }
+
+  async decrementLike(id: string): Promise<Post> {
+    await this.findPost(id);
+    const post = await this.postModel.findById(id);
+    post.likes -= 1;
+    await post.save();
+    return post;
+  }
+
   async updatePost(id: string, dto: UpdatePostDto): Promise<Post> {
     if (Object.keys(dto).length <= 0)
       throw new BadRequestException('No data provided.');

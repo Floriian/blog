@@ -68,6 +68,43 @@ export class PostsController {
     return this.postsService.createPost(dto);
   }
 
+  @Post('/increment/:id')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiAcceptedResponse({
+    isArray: false,
+    description: 'It increments post like.',
+    type: PostEntity,
+  })
+  @ApiNotFoundResponse({
+    isArray: false,
+    description: 'This error happens, when no post found with given ID.',
+  })
+  @ApiBadRequestResponse({
+    isArray: false,
+    description: 'This error happens, when the given post id is invalid',
+  })
+  incrementLike(@Param('id') id: string) {
+    return this.postsService.incrementLike(id);
+  }
+
+  @Post('/decrement/:id')
+  @ApiAcceptedResponse({
+    isArray: false,
+    description: 'It increments post like.',
+    type: PostEntity,
+  })
+  @ApiNotFoundResponse({
+    isArray: false,
+    description: 'This error happens, when no post found with given ID.',
+  })
+  @ApiBadRequestResponse({
+    isArray: false,
+    description: 'This error happens, when the given post id is invalid',
+  })
+  decrementLike(@Param('id') id: string) {
+    return this.postsService.decrementLike(id);
+  }
+
   @Patch(':id')
   @HttpCode(HttpStatus.ACCEPTED)
   @ApiAcceptedResponse({
