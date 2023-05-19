@@ -9,7 +9,7 @@ import mongoose, { Model } from 'mongoose';
 import { CreatePostDto } from './dto/CreatePost.dto';
 import { UpdatePostDto } from './dto/UpdatePost.dto';
 import { Success } from '../types/success';
-
+import { markdownToTxt } from 'markdown-to-txt';
 @Injectable()
 export class PostsService {
   constructor(@InjectModel(Post.name) private postModel: Model<Post>) {}
@@ -38,7 +38,8 @@ export class PostsService {
   }
 
   async createPost(dto: CreatePostDto): Promise<Post> {
-    const post = await this.postModel.create(dto);
+    const preview = markdownToTxt(dto.content.slice(0, 150));
+    const post = await this.postModel.create({ ...dto, preview });
     return post.save();
   }
 
