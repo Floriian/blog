@@ -15,4 +15,6 @@ export class PostEntity implements Post {
 
   @ApiProperty()
   comments: number;
+  @ApiProperty()
+  preview: string;
 }

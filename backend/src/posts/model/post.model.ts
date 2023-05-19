@@ -15,6 +15,11 @@ export class Post {
 
   @Prop({
     required: true,
+  })
+  preview: string;
+
+  @Prop({
+    required: true,
     default: 0,
   })
   likes: number;
