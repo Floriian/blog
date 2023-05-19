@@ -15,11 +15,7 @@ export default function BlogPreview({ post }: Props) {
         {post.createdAt.toString().split("T")[0]}
       </p>
       <hr />
-      <p>
-        {post.content.length > 100
-          ? post.content.slice(0, 100) + "..."
-          : post.content}
-      </p>
+      <p>{post.preview ? post.preview + "..." : post.content.slice(0, 150)}</p>
       <Link
         href={`/post/${post._id}`}
         className="hover:text-blue-500 transition-colors duration-150 text-lg"
