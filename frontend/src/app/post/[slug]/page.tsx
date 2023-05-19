@@ -28,10 +28,14 @@ export default async function BlogId({ params }: { params: { slug: string } }) {
       <h1 className="text-2xl text-center">{post.title}</h1>
       <Markdown markdown={post.content} />
       <hr />
-      <h2 className="text-center">Comments</h2>
-      {comments.map((comment) => (
-        <Comment comment={comment} key={comment._id} />
-      ))}
+      <h2 className="text-center text-xl">Comments</h2>
+      {comments.length ? (
+        comments.map((comment) => (
+          <Comment comment={comment} key={comment._id} />
+        ))
+      ) : (
+        <p>There are no comments. Be first!</p>
+      )}
     </div>
   );
 }
